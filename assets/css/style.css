@@ -1,5 +1,5 @@
                         /*===== GOOGLE FONTS =====*/
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
                         /*===== VARIABLES CSS =====*/
 :root {
@@ -19,7 +19,7 @@
     --body-color: #FCFCFC;
 
                         /*===== Font and typography =====*/
-  --body-font: 'Ubuntu', sans-serif;
+  --body-font: 'Poppins', sans-serif;
   --normal-font-size: 1rem;
   --smaller-font-size: .813rem;
 }
@@ -48,7 +48,6 @@ img{
     display: grid;
 }
 .drop{
-    height: 100vh;
     align-items: center;
     justify-content: center;
 }
@@ -109,7 +108,7 @@ input{
     font-size: .938rem;
     min-width: 320px;
     border-radius: 1%;
-    
+    font-family: var(--body-font);
 
    
 }
@@ -139,7 +138,7 @@ textarea::placeholder{
 }
 
 
-.addmore, #print{
+.addmore, #print, .delete{
     height: 50px;
     width: 90px;
     font-family: var(--body-font);
@@ -150,7 +149,12 @@ textarea::placeholder{
 #print{
     min-width: 120px;
 }
-.ri-refresh-fill{
+.delete{
+    min-width: 120px;
+}
+.ri-refresh-fill,
+.bx-arrow-back,
+.ri-file-download-line{
     font-size: 4rem;
     
     
@@ -168,9 +172,7 @@ textarea::placeholder{
 }
 
 .editing-pdf{
-    position: absolute;
-    top: 2.2rem;
-    left: 0;
+    
     
     cursor: pointer;
     color: var(--text-color);
@@ -183,4 +185,58 @@ textarea::placeholder{
 .controls{
     gap: 1rem;
     display: flex;
+    justify-self: center;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+    margin-left: 3rem;
+   
+   
 }
+.theme-switcher{
+    
+    display: flex;
+    color: var(--text-color);
+    font-size: 3.8rem;
+    cursor: pointer;
+
+}
+
+.theme-switcher:hover{
+    color: var(--title-color);
+}
+.result{
+    display: none;
+}
+
+i,button{
+    transition: .3s;
+}
+i:active,
+button:active{
+    transform: scale(.81);
+}
+textarea{
+    font-family: var(--body-font);
+}
+
+::-webkit-scrollbar{
+    width: 0.6rem;
+    border-radius: .5rem;
+    background-color: hsl(228,8%,76%);
+
+}
+::-webkit-scrollbar-thumb{
+    background-color: hsl(228, 8%, 64%);
+    border-radius: .5rem;
+
+}
+
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: hsl(228, 8%, 54%);
+ 
+    
+}
+
