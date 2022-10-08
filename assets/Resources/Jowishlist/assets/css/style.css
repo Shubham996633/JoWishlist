@@ -1,0 +1,337 @@
+                        /*===== GOOGLE FONTS =====*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+                        /*===== VARIABLES CSS =====*/
+:root {
+                        /*===== Colors =====*/
+  --first-color: #272A3A;
+  --first-color-light: #8A8EAA;
+  --first-color-lighten: #F8F8FC;
+
+
+
+    --first-color-alt: hsl(228,66%,47%);
+    --title-color: #0B0A0A;
+    --text-color: #403A3A;
+    --text-color-light: #707070;
+    --container-color: #FAFAFA;
+    --container-color-alt: #F0EFEF;
+    --body-color: #FCFCFC;
+
+                        /*===== Font and typography =====*/
+  --body-font: 'Poppins', sans-serif;
+  --normal-font-size: 1rem;
+  --smaller-font-size: .813rem;
+}
+
+body.dark-theme{
+    --title-color: #F2F2F2;
+    --text-color: #BFBFBF;
+    --container-color: #212121;
+    --container-color-alt: #181616;
+    --body-color: #181616;
+    --border-color: #212121;
+}
+                        /* ======= Base ======= */
+*,::before,::after{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: var(--body-font);
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+h1{
+    margin: 0;
+}
+a{
+    text-decoration: none;
+}
+img{
+    max-width: 100%;
+    height: auto;
+}
+.drop, .drop__container{
+    display: grid;
+}
+.drop{
+    align-items: center;
+    justify-content: center;
+}
+.drop__container{
+    row-gap: 1rem;
+    padding: 2rem;
+    box-shadow: 1px 1px 3px 3px #ccc8c8;
+    border: 3px solid #d1cece;
+}
+
+.dark-theme .drop__container{
+    box-shadow: 1px 1px 3px 3px #eee8e8;
+    border: 1px solid #f1e9e9;
+
+}
+.drop__card, .drop__data{
+    display: flex;
+    align-items: center;
+}
+
+.drop__card{
+    width: 360px;
+    justify-content: space-between;
+    padding: .75rem 1.25rem .75rem .75rem;
+    background-color: var(--first-color-lighten);
+    box-shadow: 6px 6px 12px 12px #E1E1E1, -6px -6px 12px 12px #FFF;
+    border-radius: .3rem;
+    cursor: grab;
+    box-shadow: 1px 1px 1px 1px #d4d0d0, -1px -1px 1px 1px #d3d3d3;
+    border: 3px solid #696767;
+}
+
+.dark-theme .drop__card{
+    box-shadow: 1px 1px 1px 1px #5e5d5d, -1px -1px 1px 1px #696969;
+    border: 3px solid #2b2929;
+    background: var(--container-color);
+
+}
+.drop__img{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+.drop__name{
+    font-size: 1.2rem;
+    color: var(--first-color);
+    font-weight: 700;
+}
+.drop__profession{
+    font-size: .99rem;
+    color: rgb(39, 38, 38);
+    font-weight: 500;
+}
+.drop__social{
+    margin: 0 .375rem;
+    color: var(--first-color-light);
+    transition: .4s;
+}
+.drop__social:hover{
+    color: var(--first-color);
+}
+.sortable-chosen{
+    box-shadow: 8px 8px 32px #E1E1E1;
+}
+
+
+
+.sortable-drag{
+    opacity: 0;
+}
+input,textarea{
+    text-align: left;
+    padding: 5px 15px;
+    margin: 5px;
+    background: #dddddd;
+    color: #0B0A0A;
+    font-size: .938rem;
+    min-width: 320px;
+    border-radius: 1%;
+    font-family: var(--body-font);
+
+   
+}
+.dark-theme input,
+.dark-theme textarea{
+    color: var(--title-color);
+    background-color: var(--container-color);
+    border-color: #dddddd;
+}
+textarea{
+    font-family: var(--body-font);
+    
+}
+
+input::placeholder{
+    color: #403A3A;
+    font-size: .813rem;
+}
+
+.dark-theme input::placeholder,
+.dark-theme textarea::placeholder{
+    color: #d3caca;
+}
+.details{
+    height: 102px;
+    min-width: 320px;
+    border: 2.1px solid rgb(85, 84, 84);
+    outline: none;
+    font-size: .938rem;
+    border-radius: 1%;
+    margin: 5px;
+    padding: 10px 15px;
+    resize: none;
+    background: #dddddd;
+    color: #0B0A0A;
+    font-family: var(--body-font);
+    
+}
+
+textarea::placeholder{
+    color: rgb(82, 79, 79);
+}
+
+
+.addmore, #print, .delete{
+    height: 50px;
+    width: 90px;
+    font-family: var(--body-font);
+    font-size: .938rem;
+    margin-left: 1rem;
+    
+}
+#print{
+    min-width: 120px;
+}
+.delete{
+    min-width: 120px;
+}
+.ri-refresh-fill,
+.bx-arrow-back,
+.ri-file-download-line,
+.change-theme{
+    font-size: 4rem;
+    
+    
+}
+
+.generate-pdf{
+   
+    /* position: absolute;
+    top: 2.2rem;
+    left: 0; */
+   
+    cursor: pointer;
+    color: var(--text-color);
+
+}
+
+.editing-pdf{
+    
+    
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.generate-pdf:hover{
+    color: var(--title-color);
+}
+
+.controls{
+    gap: 1rem;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+    margin-left: 3rem;
+   
+   
+}
+.theme-switcher{
+    
+    display: flex;
+    color: var(--text-color);
+    font-size: 3.8rem;
+    cursor: pointer;
+
+}
+
+.theme-switcher:hover{
+    color: var(--title-color);
+}
+.result{
+    display: none;
+}
+
+i,button{
+    transition: .3s;
+}
+i:active,
+button:active{
+    transform: scale(.81);
+}
+
+
+::-webkit-scrollbar{
+    width: 0.6rem;
+    border-radius: .5rem;
+    background-color: hsl(228,8%,76%);
+
+}
+::-webkit-scrollbar-thumb{
+    background-color: hsl(228, 8%, 64%);
+    border-radius: .5rem;
+
+}
+
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: hsl(228, 8%, 54%);
+ 
+    
+}
+
+input:hover, textarea:hover{
+    background: var(--container-color);
+    color: var(--title-color);
+}
+
+.dark-theme .drop__name{
+    color: var(--title-color);
+}
+.dark-theme .drop__profession{
+    color: rgb(231, 227, 227);
+}
+
+
+.load{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: grid;
+    place-items: center;
+    z-index: 10000;
+    margin: auto auto auto auto;
+}
+
+.load__gif{
+    width: 120px;
+}
+.logout{
+    
+  
+    
+    text-decoration: none;
+    outline: none;
+    border: none;
+    /* display: flex; */
+    background: #17103d;
+    color: white;
+    padding: 6px 5.4px;
+    border-radius: .5rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    box-shadow: 0 4px 8px hsla(228,66%,45%, .25);
+    cursor: pointer;
+    font-weight: 600;
+    position: absolute;
+    left: calc(100% - 24%);
+  
+    
+}
