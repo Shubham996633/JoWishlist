@@ -24,6 +24,14 @@
   --smaller-font-size: .813rem;
 }
 
+body.dark-theme{
+    --title-color: #F2F2F2;
+    --text-color: #BFBFBF;
+    --container-color: #212121;
+    --container-color-alt: #181616;
+    --body-color: #181616;
+    --border-color: #212121;
+}
                         /* ======= Base ======= */
 *,::before,::after{
     box-sizing: border-box;
@@ -32,8 +40,10 @@ body{
     margin: 0;
     padding: 0;
     font-family: var(--body-font);
-    background-color: var(--first-color-lighten);
+    background-color: var(--body-color);
+    color: var(--text-color);
 }
+
 h1{
     margin: 0;
 }
@@ -55,6 +65,14 @@ img{
     row-gap: 1rem;
     padding: 2rem;
     box-shadow: 9px 9px 18px 18px #d3caca;
+    box-shadow: 1px 1px 3px 3px #ccc8c8;
+    border: 1px solid #d1cece;
+}
+
+.dark-theme .drop__container{
+    box-shadow: 1px 1px 3px 3px #eee8e8;
+    border: 1px solid #f1e9e9;
+
 }
 .drop__card, .drop__data{
     display: flex;
@@ -69,6 +87,15 @@ img{
     box-shadow: 6px 6px 12px 12px #E1E1E1, -6px -6px 12px 12px #FFF;
     border-radius: .3rem;
     cursor: grab;
+    box-shadow: 1px 1px 1px 1px #d4d0d0, -1px -1px 1px 1px #d3d3d3;
+    border: 1px solid #696767;
+}
+
+.dark-theme .drop__card{
+    box-shadow: 1px 1px 1px 1px #5e5d5d, -1px -1px 1px 1px #696969;
+    border: 1px solid #2b2929;
+    background: var(--container-color);
+
 }
 .drop__img{
     width: 55px;
@@ -96,10 +123,13 @@ img{
 .sortable-chosen{
     box-shadow: 8px 8px 32px #E1E1E1;
 }
+
+
+
 .sortable-drag{
     opacity: 0;
 }
-input{
+input,textarea{
     text-align: left;
     padding: 5px 15px;
     margin: 5px;
@@ -112,10 +142,25 @@ input{
 
    
 }
+.dark-theme input,
+.dark-theme textarea{
+    color: var(--title-color);
+    background-color: var(--container-color);
+    border-color: #dddddd;
+}
+textarea{
+    font-family: var(--body-font);
+    
+}
 
 input::placeholder{
     color: #403A3A;
     font-size: .813rem;
+}
+
+.dark-theme input::placeholder,
+.dark-theme textarea::placeholder{
+    color: #d3caca;
 }
 .details{
     height: 102px;
@@ -154,7 +199,8 @@ textarea::placeholder{
 }
 .ri-refresh-fill,
 .bx-arrow-back,
-.ri-file-download-line{
+.ri-file-download-line,
+.change-theme{
     font-size: 4rem;
     
     
@@ -217,9 +263,7 @@ i:active,
 button:active{
     transform: scale(.81);
 }
-textarea{
-    font-family: var(--body-font);
-}
+
 
 ::-webkit-scrollbar{
     width: 0.6rem;
@@ -240,3 +284,14 @@ textarea{
     
 }
 
+input:hover, textarea:hover{
+    background: var(--container-color);
+    color: var(--title-color);
+}
+
+.dark-theme .drop__name{
+    color: var(--title-color);
+}
+.dark-theme .drop__profession{
+    color: var(--text-color);
+}

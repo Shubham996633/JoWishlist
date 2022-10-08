@@ -1,3 +1,67 @@
+/*==================== DARK LIGHT THEME ====================*/ 
+const themeswitchButton = document.querySelectorAll('.theme-switcher')
+
+themeswitchButton.forEach(button => {
+    console.log(button)
+
+    const darkTheme = 'dark-theme'
+    const iconTheme = 'bx-sun'
+
+// Previously selected topic (if user selected)
+    const darkswitchTheme = 'dark-theme'
+    const iconswitchTheme = 'ri-sun-line'
+    
+    // Previously selected topic (if user selected)
+    const selectedswitchTheme = localStorage.getItem('selected-switch-theme')
+    const selectedswitchIcon = localStorage.getItem('selected--switch-icon')
+    
+    // We obtain the current theme that the interface has by validating the dark-theme class
+    const getCurrentswitchTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
+    const getCurrentswitchIcon = () => button.classList.contains(iconTheme) ?'ri-moon-line' : 'ri-sun-line'
+    
+    // We validate if the user previously chose a topic
+    if (selectedswitchTheme) {
+      // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
+      document.body.classList[selectedswitchTheme === 'dark' ? 'add' : 'remove'](darkswitchTheme)
+      button.classList[selectedswitchIcon === 'ri-moon-line' ? 'add' : 'remove'](iconswitchTheme)
+    }
+    // Activate / deactivate the theme manually with the button
+    button.addEventListener('click', () => {
+        // Add or remove the dark / icon theme
+        document.body.classList.toggle(darkswitchTheme)
+        button.classList.toggle(iconswitchTheme)
+        // We save the theme and the current icon that the user chose
+        localStorage.setItem('selected-theme', getCurrentswitchTheme())
+        localStorage.setItem('selected-icon', getCurrentswitchIcon())
+    })
+})
+const darkTheme = 'dark-theme'
+    const iconTheme = 'bx-sun'
+
+// Previously selected topic (if user selected)
+    const darkswitchTheme = 'dark-theme'
+    const iconswitchTheme = 'ri-sun-line'
+    
+    // Previously selected topic (if user selected)
+    const selectedswitchTheme = localStorage.getItem('selected-switch-theme')
+    const selectedswitchIcon = localStorage.getItem('selected--switch-icon')
+    
+    // We obtain the current theme that the interface has by validating the dark-theme class
+    const getCurrentswitchTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
+    const getCurrentswitchIcon = () => button.classList.contains(iconTheme) ?'ri-moon-line' : 'ri-sun-line'
+    
+    // We validate if the user previously chose a topic
+    if (selectedswitchTheme) {
+      // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
+      document.body.classList[selectedswitchTheme === 'dark' ? 'add' : 'remove'](darkswitchTheme)
+      button.classList[selectedswitchIcon === 'ri-moon-line' ? 'add' : 'remove'](iconswitchTheme)
+    }
+
+
+
+
+
+
 // ======= DRAG and DROP =======
 const dropItems = document.getElementById('drop-items')
 const finalItems = document.getElementById('final-items')
@@ -94,20 +158,31 @@ function duplicate() {
    
     i++;
     document.querySelector('.delete').onclick = () => {
-        console.log('clicked')
         i -= 1
         if(i === 0){
             i = 1
         }
-        console.log(i)
+    }
+    changeValue()
+    
+}
+
+function changeValue (){
+    const totalContainer = document.querySelectorAll("#new__drop")
+    if(totalContainer.length === 0){
+        document.querySelector('.delete').disabled = true
+
+    }else if (totalContainer.length > 0){
+        document.querySelector('.delete').disabled = false
+
+        const inputContainer = document.querySelector(`.dropItem${totalContainer.length}`)
+        const textareaContainer = document.querySelector(`.dropItem${totalContainer.length}`)
+        const inputvalue = inputContainer.querySelector('input')
+        const textareavalue = textareaContainer.querySelector('textarea')
+        inputvalue.value = ""
+        textareavalue.value = ""
     }
 
-    const allInput = document.querySelectorAll('.home__title')
-    allInput.forEach(input => {
-        console.log(input.value)
-        
-    })
-    console.log(document.querySelectorAll('.home__title'))
 }
 
 
@@ -119,18 +194,14 @@ function deleteDrop(){
     const totalContainer = document.querySelectorAll("#new__drop")
     
     
-    console.log(totalContainer.length)
     if(totalContainer.length === 0){
-        console.log('No More Additional Dialogs')
+        document.querySelector('.delete').disabled = true
+
     }else if((totalContainer.length > 0)){
 
         const deleteItem = document.querySelector(`.dropItem${totalContainer.length}`)
         deleteItem.parentNode.removeChild(deleteItem)
     }
     
-    
-
-    
-
 
 }
