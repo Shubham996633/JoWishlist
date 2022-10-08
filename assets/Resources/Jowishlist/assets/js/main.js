@@ -215,24 +215,31 @@ function updater(){
 
 
 var i = 1;
-var original = document.querySelector('.drop__card-creator');
+
 
 function duplicate() {
+    const totalContainer = document.querySelectorAll("#new__drop")
+    console.log(totalContainer.length)
+    if(totalContainer.length === 1){
+        i = 2
+    }
+    var original = document.querySelector('.dropItem1');
     var clone = original.cloneNode(true); 
     
     clone.id = `new__drop`
     clone.className = `drop__card dropItem${i}` 
-    
-    
     original.parentNode.appendChild(clone);
    
     i++;
+
     document.querySelector('.delete').onclick = () => {
         i -= 1
         if(i === 0){
             i = 1
         }
+        console.log(i)
     }
+   
     changeValue()
     
 }
@@ -242,15 +249,21 @@ function changeValue (){
     if(totalContainer.length === 0){
         document.querySelector('.delete').disabled = true
 
-    }else if (totalContainer.length > 0){
+    }else if (totalContainer.length === 1){
+        console.log('cant change initial value')
+        document.querySelector('.delete').disabled = false
+        
+    }else{
         document.querySelector('.delete').disabled = false
 
+        console.log(totalContainer.length)
         const inputContainer = document.querySelector(`.dropItem${totalContainer.length}`)
         const textareaContainer = document.querySelector(`.dropItem${totalContainer.length}`)
         const inputvalue = inputContainer.querySelector('input')
         const textareavalue = textareaContainer.querySelector('textarea')
         inputvalue.value = ""
         textareavalue.value = ""
+
     }
 
 }
@@ -261,18 +274,24 @@ document.querySelector('.addmore').addEventListener('click', duplicate)
 
 document.querySelector('.delete').addEventListener('click', deleteDrop)
 function deleteDrop(){
+    console.log(i)
+
     const totalContainer = document.querySelectorAll("#new__drop")
-    
+    console.log(totalContainer.length)
     
     if(totalContainer.length === 0){
         document.querySelector('.delete').disabled = true
 
-    }else if((totalContainer.length > 0)){
+    }
+    else if(totalContainer.length === 1){
+        console.log('failed to delete')
+        document.querySelector('.delete').disabled = true
+        
+    }else{
 
         const deleteItem = document.querySelector(`.dropItem${totalContainer.length}`)
         deleteItem.parentNode.removeChild(deleteItem)
     }
-    
 
 }
 
@@ -437,10 +456,35 @@ save.addEventListener('click', e=>{
 })
 
 function renderData(userCode){
-    console.log(userCode.data().heading)
-    console.log(userCode.data().text)
+    const headingList = userCode.data().heading
+    const textList = userCode.data().text
+    console.log(headingList)
+    console.log(textList)
+    const filedData = document.querySelector('.drop__container-creator')
+    let x = 0
+    filedData.innerHTML = ""
+    headingList.forEach((heading) => {
+        filedData.innerHTML += `
+                        <div class="drop__card dropItem${i}" id="new__drop">
+                                    
+                        <div class="drop__data">
+                            <div>
+                                <h1 class="drop__name"><input type="text" name="" id="home__title" class="home__title" placeholder=" Enter Heading " value = "${heading}"></h1>
+                                <span class="drop__profession"><textarea class="details" placeholder="Enter Text">${textList[x]}</textarea></span>
+                            </div>
+                        </div>
+                    </div>
+                        `
+        x = x + 1;
+        i++
+
+    })
+    
+    console.log(filedData)
+
 
 }
+
 
 function displayContent(){
     auth.onAuthStateChanged(user => {
