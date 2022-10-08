@@ -346,3 +346,118 @@ function reverseControls(){
 }
 
 
+auth.onAuthStateChanged(user => {
+    if(user){
+        console.log('User is Sign In')
+    }else{
+        console.log('User is Sign Out')
+
+        
+    }
+})
+
+
+function logout() {
+    Swal.fire({
+        title: 'Are you sure?',
+        
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Sign Out!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Signing off!',
+            ' ',
+            'success'
+          )
+          document.querySelector('.swal2-popup').style.background = '#1b1a1a'
+            document.querySelector('.swal2-popup').style.color = 'white'
+
+            document.querySelector('.swal2-success-circular-line-left').style.background = '#1b1a1a'
+            document.querySelector('.swal2-success-circular-line-left').style.color = '#white'
+            document.querySelector('.swal2-success-circular-line-right').style.background = '#1b1a1a'
+            document.querySelector('.swal2-success-circular-line-right').style.color = '#white'
+            document.querySelector('.swal2-success-fix').style.background = '#1b1a1a'
+            document.querySelector('.swal2-success-fix').style.color = '#white'
+            
+          setTimeout(() => {
+            auth.signOut();
+            alert('User is Sign Out')
+
+            location = '../../../index.html'
+          }, 963);
+        }
+      })
+
+      document.querySelector('.swal2-popup').style.background = '#1b1a1a'
+      document.querySelector('.swal2-popup').style.color = 'white'
+    
+    
+}
+document.querySelector('.logout').addEventListener('click', logout)
+
+let date = new Date()
+let time = date.getTime()
+let counter = time
+const save = document.querySelector('.save')
+
+save.addEventListener('click', e=>{
+    console.log(e)
+    const heading = []
+    const inputTitle = document.querySelectorAll('.home__title')
+    inputTitle.forEach(title => {
+        heading.push(title.value)
+    })
+
+    const text = []
+    const inputText = document.querySelectorAll('.details')
+    inputText.forEach(textcontent => {
+        text.push(textcontent.value)
+    })
+    
+
+    auth.onAuthStateChanged(user => {
+        if(user){
+            fs.collection(user.uid).doc('_' + 963).set({
+                heading,
+                text
+            
+            }).then(() => {
+
+            }).catch(err => {
+                console.log(err.message)
+            })
+        }else{
+
+        }
+    })
+})
+
+function renderData(userCode){
+    console.log(userCode.data().heading)
+    console.log(userCode.data().text)
+
+}
+
+function displayContent(){
+    auth.onAuthStateChanged(user => {
+        if(user){
+            fs.collection(user.uid).onSnapshot((snapshot) => {
+                let changes = snapshot.docChanges()
+                changes.forEach(change => {
+                    if(change.type === 'added'){
+                        console.log(change.doc)
+                        renderData(change.doc)
+                    }else if(change.type === 'removed'){
+                        console.log('Developer Call')
+                    }
+                })
+            })
+        }
+    })
+}
+
+displayContent()

@@ -313,7 +313,8 @@ input:hover, textarea:hover{
 .load__gif{
     width: 120px;
 }
-.logout{
+.logout,
+.save{
     
   
     
@@ -334,4 +335,8 @@ input:hover, textarea:hover{
     left: calc(100% - 24%);
   
     
+}
+
+.save{
+    margin-top: 3rem;
 }
