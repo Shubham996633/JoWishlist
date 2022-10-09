@@ -242,7 +242,6 @@ function duplicate() {
         if(i === 0){
             i = 1
         }
-        console.log(i)
     }
    
     changeValue()
@@ -278,10 +277,8 @@ document.querySelector('.addmore').addEventListener('click', duplicate)
 
 document.querySelector('.delete').addEventListener('click', deleteDrop)
 function deleteDrop(){
-    console.log(i)
 
     const totalContainer = document.querySelectorAll("#new__drop")
-    console.log(totalContainer.length)
     
     if(totalContainer.length === 0){
         document.querySelector('.delete').disabled = true
@@ -307,7 +304,7 @@ document.body.style.height = windowHeight + "px";
 
 
 
-let areaCv = document.querySelector('html')
+let areaCv = document.querySelector('#final-items')
 
 let resumeButton = document.querySelector('.downloadfile')
 
@@ -319,13 +316,20 @@ let opt = {
     html2canvas:  { scale: 4 },
     jsPDF:        { format: 'a4', orientation: 'portrait' },
     enableLinks: true,
-    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+   
     
   };
 
 
 function generateResume(){
-    html2pdf(areaCv, opt)
+    if(document.querySelector('body').classList.contains('dark-theme')){
+        
+        html2pdf(areaCv, opt)
+    }else{
+        document.querySelector('.result').style.marginTop = `-12rem`
+
+        window.print()
+    }
 }
 
 resumeButton.addEventListener('click', () => {
@@ -336,7 +340,7 @@ resumeButton.addEventListener('click', () => {
     generateResume()
     setTimeout(() => {
         reverseControls()
-    }, 3900);
+    }, 2100);
 
     const Toast = Swal.mixin({
         toast: true,
@@ -351,19 +355,19 @@ resumeButton.addEventListener('click', () => {
       })
       
       Toast.fire({
-        icon: 'success',
-        title: 'Download Initiated'
+        icon: 'info',
+        title: 'Wishlist Print Initiated'
       })
       document.querySelector('.swal2-popup').style.background = '#1b1a1a'
       document.querySelector('.swal2-popup').style.color = 'white'
       document.querySelector('.swal2-timer-progress-bar').style.background = '#bebcc5'
-      document.querySelector('.swal2-success-circular-line-left').style.background = '#1b1a1a' 
-      document.querySelector('.swal2-success-circular-line-right').style.background = '#1b1a1a' 
-      document.querySelector('.swal2-success-fix').style.background = '#1b1a1a' 
+       
 
       
 })
 function reverseControls(){
+    document.querySelector('.result').style.marginTop = `0rem`
+
     document.querySelector('.resultcontrols').style.transform = 'scale(1)'
 
 }
@@ -437,7 +441,6 @@ function logout() {
               datasaver()
             setTimeout(() => {
             auth.signOut();
-            alert('User is Sign Out')
 
             location = '../../../index.html'
         }, 2100);
@@ -445,20 +448,15 @@ function logout() {
             Swal.fire(
                 'Data not Saved & Signing off!',
                 ' ',
-                'success'
+                'info'
               )
             document.querySelector('.swal2-popup').style.background = '#1b1a1a'
             document.querySelector('.swal2-popup').style.color = 'white'
 
-            document.querySelector('.swal2-success-circular-line-left').style.background = '#1b1a1a'
-            document.querySelector('.swal2-success-circular-line-left').style.color = '#white'
-            document.querySelector('.swal2-success-circular-line-right').style.background = '#1b1a1a'
-            document.querySelector('.swal2-success-circular-line-right').style.color = '#white'
-            document.querySelector('.swal2-success-fix').style.background = '#1b1a1a'
-            document.querySelector('.swal2-success-fix').style.color = '#white'
+            
+            
             setTimeout(() => {
             auth.signOut();
-            alert('User is Sign Out')
 
             location = '../../../index.html'
         }, 963);
@@ -543,8 +541,7 @@ function datasaver(){
 function renderData(userCode){
     const headingList = userCode.data().heading
     const textList = userCode.data().text
-    console.log(headingList)
-    console.log(textList)
+    
     const filedData = document.querySelector('.drop__container-creator')
     let x = 0
     filedData.innerHTML = ""
