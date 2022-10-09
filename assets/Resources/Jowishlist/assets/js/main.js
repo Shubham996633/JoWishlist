@@ -249,24 +249,44 @@ function duplicate() {
 }
 
 function changeValue (){
-    const totalContainer = document.querySelectorAll("#new__drop")
-    if(totalContainer.length === 0){
-        document.querySelector('.delete').disabled = true
 
-    }else if (totalContainer.length === 1){
-        console.log('cant change initial value')
-        // document.querySelector('.delete').disabled = false
+    if(document.querySelector('.drop__card-creator')){
         
+        const totalContainer = document.querySelectorAll("#new__drop")
+        if(totalContainer.length === 0){
+            document.querySelector('.delete').disabled = true
+    
+        }else{
+            document.querySelector('.delete').disabled = false
+    
+            const inputContainer = document.querySelector(`.dropItem${totalContainer.length}`)
+            const textareaContainer = document.querySelector(`.dropItem${totalContainer.length}`)
+            const inputvalue = inputContainer.querySelector('input')
+            const textareavalue = textareaContainer.querySelector('textarea')
+            inputvalue.value = ""
+            textareavalue.value = ""
+    
+        }
     }else{
-        document.querySelector('.delete').disabled = false
-
-        const inputContainer = document.querySelector(`.dropItem${totalContainer.length}`)
-        const textareaContainer = document.querySelector(`.dropItem${totalContainer.length}`)
-        const inputvalue = inputContainer.querySelector('input')
-        const textareavalue = textareaContainer.querySelector('textarea')
-        inputvalue.value = ""
-        textareavalue.value = ""
-
+        const totalContainer = document.querySelectorAll("#new__drop")
+        if(totalContainer.length === 0){
+            document.querySelector('.delete').disabled = true
+    
+        }else if (totalContainer.length === 1){
+            console.log('cant change initial value')
+            document.querySelector('.delete').disabled = false
+            
+        }else{
+            document.querySelector('.delete').disabled = false
+    
+            const inputContainer = document.querySelector(`.dropItem${totalContainer.length}`)
+            const textareaContainer = document.querySelector(`.dropItem${totalContainer.length}`)
+            const inputvalue = inputContainer.querySelector('input')
+            const textareavalue = textareaContainer.querySelector('textarea')
+            inputvalue.value = ""
+            textareavalue.value = ""
+    
+        }
     }
 
 }
@@ -277,22 +297,37 @@ document.querySelector('.addmore').addEventListener('click', duplicate)
 
 document.querySelector('.delete').addEventListener('click', deleteDrop)
 function deleteDrop(){
+    if(document.querySelector('.drop__card-creator')){
 
-    const totalContainer = document.querySelectorAll("#new__drop")
-    
-    if(totalContainer.length === 0){
-        document.querySelector('.delete').disabled = true
-
-    }
-    else if(totalContainer.length === 1){
-        console.log('failed to delete')
-        document.querySelector('.delete').disabled = true
+        const totalContainer = document.querySelectorAll("#new__drop")
         
+        if(totalContainer.length === 0){
+            document.querySelector('.delete').disabled = true
+    
+        }
+        else{
+    
+            const deleteItem = document.querySelector(`.dropItem${totalContainer.length}`)
+            deleteItem.parentNode.removeChild(deleteItem)
+        }
     }else{
-
-        const deleteItem = document.querySelector(`.dropItem${totalContainer.length}`)
-        deleteItem.parentNode.removeChild(deleteItem)
+        const totalContainer = document.querySelectorAll("#new__drop")
+        
+        if(totalContainer.length === 0){
+            document.querySelector('.delete').disabled = true
+    
+        }
+        else if(totalContainer.length === 1){
+            console.log('failed to delete')
+            document.querySelector('.delete').disabled = true
+            
+        }else{
+    
+            const deleteItem = document.querySelector(`.dropItem${totalContainer.length}`)
+            deleteItem.parentNode.removeChild(deleteItem)
+        }
     }
+
 
 }
 
@@ -542,6 +577,11 @@ function datasaver(){
 }
 
 function renderData(userCode){
+    if(document.querySelector('.drop__card-creator')){
+        i = 1
+
+    }else{
+    }
     const headingList = userCode.data().heading
     const textList = userCode.data().text
     
