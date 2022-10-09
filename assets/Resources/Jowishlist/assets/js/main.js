@@ -5,7 +5,7 @@ onload = () => {
     const load =document.getElementById('load')
     setTimeout(() =>{
         load.style.display='none'
-    },963)
+    },3333)
 
     
 }
@@ -222,7 +222,13 @@ function duplicate() {
     if(totalContainer.length === 1){
         i = 2
     }
-    var original = document.querySelector('.dropItem1');
+    if(document.querySelector('.drop__card-creator')){
+    var original = document.querySelector('.drop__card-creator');
+
+    }else{
+        
+        var original = document.querySelector('.dropItem1');
+    }
     var clone = original.cloneNode(true); 
     
     clone.id = `new__drop`
@@ -365,9 +371,35 @@ function reverseControls(){
 
 auth.onAuthStateChanged(user => {
     if(user){
+
+        const username = document.querySelector('.username')
+        fs.collection('users').doc(user.uid).get().then(snapshot => {
+            username.innerText = `Hello, ${snapshot.data().Name}`
+        })
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4800,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+          icon: 'info',
+          title: `Please wait while we fetech your saved Data `
+        })
+        
+        document.querySelector('.swal2-popup').style.background = '#1b1a1a'
+        document.querySelector('.swal2-popup').style.color = 'white'
+        document.querySelector('.swal2-timer-progress-bar').style.background = '#bebcc5'
         console.log('User is Sign In')
     }else{
         console.log('User is Sign Out')
+       
 
         
     }
@@ -376,21 +408,23 @@ auth.onAuthStateChanged(user => {
 
 function logout() {
     Swal.fire({
-        title: 'Are you sure?',
-        
-        icon: 'warning',
+        title: 'Do you want to save the changes?',
+        showDenyButton: true,
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Sign Out!'
+        confirmButtonText: 'Save & Sign Out!',
+        denyButtonText: `Don't save & Sign Out!`,
       }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          Swal.fire(
-            'Signing off!',
-            ' ',
-            'success'
-          )
-          document.querySelector('.swal2-popup').style.background = '#1b1a1a'
+
+            Swal.fire(
+               
+                'Data Saved & Signing off!',
+                ' ',
+                'success'
+              )
+
+            document.querySelector('.swal2-popup').style.background = '#1b1a1a'
             document.querySelector('.swal2-popup').style.color = 'white'
 
             document.querySelector('.swal2-success-circular-line-left').style.background = '#1b1a1a'
@@ -399,13 +433,35 @@ function logout() {
             document.querySelector('.swal2-success-circular-line-right').style.color = '#white'
             document.querySelector('.swal2-success-fix').style.background = '#1b1a1a'
             document.querySelector('.swal2-success-fix').style.color = '#white'
-            
-          setTimeout(() => {
+
+              datasaver()
+            setTimeout(() => {
             auth.signOut();
             alert('User is Sign Out')
 
             location = '../../../index.html'
-          }, 963);
+        }, 2100);
+        } else if (result.isDenied) {
+            Swal.fire(
+                'Data not Saved & Signing off!',
+                ' ',
+                'success'
+              )
+            document.querySelector('.swal2-popup').style.background = '#1b1a1a'
+            document.querySelector('.swal2-popup').style.color = 'white'
+
+            document.querySelector('.swal2-success-circular-line-left').style.background = '#1b1a1a'
+            document.querySelector('.swal2-success-circular-line-left').style.color = '#white'
+            document.querySelector('.swal2-success-circular-line-right').style.background = '#1b1a1a'
+            document.querySelector('.swal2-success-circular-line-right').style.color = '#white'
+            document.querySelector('.swal2-success-fix').style.background = '#1b1a1a'
+            document.querySelector('.swal2-success-fix').style.color = '#white'
+            setTimeout(() => {
+            auth.signOut();
+            alert('User is Sign Out')
+
+            location = '../../../index.html'
+        }, 963);
         }
       })
 
@@ -421,8 +477,34 @@ let time = date.getTime()
 let counter = time
 const save = document.querySelector('.save')
 
-save.addEventListener('click', e=>{
-    console.log(e)
+save.addEventListener('click', () =>{
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1800,
+        timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+
+    Toast.fire({
+        icon: 'success',
+        title: 'Succesfully Saved '
+    })
+    document.querySelector('.swal2-popup').style.background = '#1b1a1a'
+    document.querySelector('.swal2-popup').style.color = 'white'
+    document.querySelector('.swal2-timer-progress-bar').style.background = '#bebcc5'
+    document.querySelector('.swal2-success-circular-line-left').style.background = '#1b1a1a' 
+    document.querySelector('.swal2-success-circular-line-right').style.background = '#1b1a1a' 
+    document.querySelector('.swal2-success-fix').style.background = '#1b1a1a' 
+    
+   datasaver()
+})
+
+function datasaver(){
     const heading = []
     const inputTitle = document.querySelectorAll('.home__title')
     inputTitle.forEach(title => {
@@ -441,8 +523,13 @@ save.addEventListener('click', e=>{
             fs.collection(user.uid).doc('_' + 963).set({
                 heading,
                 text
+
+
             
             }).then(() => {
+
+                
+        
 
             }).catch(err => {
                 console.log(err.message)
@@ -451,7 +538,7 @@ save.addEventListener('click', e=>{
 
         }
     })
-})
+}
 
 function renderData(userCode){
     const headingList = userCode.data().heading
@@ -501,3 +588,4 @@ function displayContent(){
 }
 
 displayContent()
+

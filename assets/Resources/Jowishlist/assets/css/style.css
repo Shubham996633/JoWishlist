@@ -233,7 +233,7 @@ textarea::placeholder{
     display: flex;
     justify-self: center;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 5rem;
     margin-right: 3rem;
     margin-bottom: 3rem;
     margin-left: 3rem;
@@ -321,7 +321,6 @@ input:hover, textarea:hover{
     text-decoration: none;
     outline: none;
     border: none;
-    /* display: flex; */
     background: #17103d;
     color: white;
     padding: 6px 5.4px;
@@ -332,11 +331,52 @@ input:hover, textarea:hover{
     cursor: pointer;
     font-weight: 600;
     position: absolute;
-    left: calc(100% - 24%);
+    justify-self: center;
+    justify-content: center;
+   
+    
   
     
 }
 
+.dark-theme .save,
+.dark-theme .logout{
+    background: #a095db;
+    box-shadow: 0 4px 8px rgba(94, 121, 228, 0.25);
+    color: rgb(3, 3, 3);
+
+
+
+}
+
+.logout{
+    margin-left: -9rem;
+}
 .save{
-    margin-top: 3rem;
+    margin-left: 9rem;
+}
+
+.username{
+   
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+    
+}
+.firebasecontrols{
+    display: grid;
+    justify-self: center;
+    justify-content: center;
+}
+.buttons{
+    margin-top: 2rem;
+    display: grid;
+    justify-self: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: -1rem;
+
+}
+
+.result .logout{
+    display: none;
 }

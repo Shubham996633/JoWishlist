@@ -369,7 +369,7 @@ transition: var(--transition);
 margin-block-start: 84px;
 background-repeat: no-repeat;
 background-size: cover;
-background-position: center;
+/* background-position: center; */
 text-align: center;
 min-height: 100vh;
 display: grid;
@@ -691,6 +691,7 @@ right: 45px;
 
 
 @media (min-width: 992px) {
+        
 
 .container { max-width: 960px; }
 
@@ -809,7 +810,14 @@ column-gap: 80px;
 }
 
 }
+@media (min-width: 746px){
+        .hero{
+                background-position: center;
 
+
+        }
+        
+}
 
 @media (min-width: 1200px) {
 
@@ -846,4 +854,9 @@ padding-inline: 25px;
 
 a{
 cursor: pointer;
+}
+@media (min-width:999px){
+        .hero{
+                background-position: initial;
+        }
 }
