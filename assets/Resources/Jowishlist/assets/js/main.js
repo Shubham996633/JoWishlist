@@ -219,7 +219,6 @@ var i = 1;
 
 function duplicate() {
     const totalContainer = document.querySelectorAll("#new__drop")
-    console.log(totalContainer.length)
     if(totalContainer.length === 1){
         i = 2
     }
@@ -256,7 +255,6 @@ function changeValue (){
     }else{
         document.querySelector('.delete').disabled = false
 
-        console.log(totalContainer.length)
         const inputContainer = document.querySelector(`.dropItem${totalContainer.length}`)
         const textareaContainer = document.querySelector(`.dropItem${totalContainer.length}`)
         const inputvalue = inputContainer.querySelector('input')
@@ -480,7 +478,6 @@ function renderData(userCode){
 
     })
     
-    console.log(filedData)
 
 
 }
@@ -493,7 +490,6 @@ function displayContent(){
                 let changes = snapshot.docChanges()
                 changes.forEach(change => {
                     if(change.type === 'added'){
-                        console.log(change.doc)
                         renderData(change.doc)
                     }else if(change.type === 'removed'){
                         console.log('Developer Call')
