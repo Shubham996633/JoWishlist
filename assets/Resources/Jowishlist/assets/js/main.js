@@ -255,7 +255,7 @@ function changeValue (){
 
     }else if (totalContainer.length === 1){
         console.log('cant change initial value')
-        document.querySelector('.delete').disabled = false
+        // document.querySelector('.delete').disabled = false
         
     }else{
         document.querySelector('.delete').disabled = false
@@ -342,26 +342,29 @@ resumeButton.addEventListener('click', () => {
         reverseControls()
     }, 2100);
 
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3639,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-      
-      Toast.fire({
-        icon: 'info',
-        title: 'Wishlist Print Initiated'
-      })
-      document.querySelector('.swal2-popup').style.background = '#1b1a1a'
-      document.querySelector('.swal2-popup').style.color = 'white'
-      document.querySelector('.swal2-timer-progress-bar').style.background = '#bebcc5'
-       
+    setTimeout(() => {
+        
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2100,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'info',
+            title: 'Wishlist Print Initiated'
+          })
+          document.querySelector('.swal2-popup').style.background = '#1b1a1a'
+          document.querySelector('.swal2-popup').style.color = 'white'
+          document.querySelector('.swal2-timer-progress-bar').style.background = '#bebcc5'
+           
+    }, 1000);
 
       
 })
