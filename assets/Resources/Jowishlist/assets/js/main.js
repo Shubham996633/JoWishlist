@@ -422,7 +422,7 @@ auth.onAuthStateChanged(user => {
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 4800,
+            timer: 5400,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -438,14 +438,34 @@ auth.onAuthStateChanged(user => {
         document.querySelector('.swal2-popup').style.background = '#1b1a1a'
         document.querySelector('.swal2-popup').style.color = 'white'
         document.querySelector('.swal2-timer-progress-bar').style.background = '#bebcc5'
-        console.log('User is Sign In')
     }else{
         console.log('User is Sign Out')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            confirmButtonColor: 'red',
+            allowOutsideClick: false,
+            
+            confirmButtonText: 'Close',
+            text: 'It Seems no User is Sign, Please First Sign In',
+            footer: 'If user has Sign In and showing this error Contact Developer'
+          }).then((result) => {
+            if (result.isConfirmed) {
+             
+              location = `../../../index.html`
+            }
+          })
+
+
+        document.querySelector('.creator').style.transform = 'scale(0)'
+        document.querySelector('.result').style.transform = 'scale(0)'
+       
        
 
         
     }
 })
+
 
 
 function logout() {
@@ -629,3 +649,8 @@ function displayContent(){
 
 displayContent()
 
+
+window.history.pushState(null, null, window.location.href);
+window.onpopstate = function () {
+    window.history.go(1);
+};
