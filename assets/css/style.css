@@ -638,3 +638,22 @@ cursor: pointer;
                 background-position: initial;
         }
 }
+
+::-webkit-scrollbar{
+        width: 0.6rem;
+        border-radius: .72rem;
+        background-color: hsl(228,8%,76%);
+    
+    }
+    ::-webkit-scrollbar-thumb{
+        background-color: hsl(229, 20%, 89%);
+        border-radius: .72rem;
+    
+    }
+    
+    
+    ::-webkit-scrollbar-thumb:hover{
+        background-color: hsl(225, 22%, 96%);
+     
+        
+    }
